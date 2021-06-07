@@ -12,7 +12,7 @@ btnCargaPersonajes.addEventListener("click", async() => {
         const personajes = await getPersonajes();
         pintarPersonajes(personajes);
     } catch (error) {
-        mensajeErrorElemento.textContent = error;
+        mensajeErrorElemento.textContent = error.message;
     }
 });
 const vaciarPersonajes = () => {
@@ -43,6 +43,6 @@ btnMatarFamilia.addEventListener("click", async() => {
         const arrayPersonajesModificados = await mataPersonajes(inputFamilia.value);
         pintarPersonajes(arrayPersonajesModificados);
     } catch (error) {
-        mensajeErrorElemento.textContent = error;
+        mensajeErrorElemento.textContent = error.message;
     }
 });
