@@ -6,9 +6,14 @@ const personajesElemento = document.querySelector(".personajes");
 const btnCargaPersonajes = document.querySelector(".cargar-personajes");
 const btnMatarFamilia = document.querySelector(".matar-familia");
 const inputFamilia = document.querySelector(".familia");
+const mensajeErrorElemento = document.querySelector(".mensaje");
 btnCargaPersonajes.addEventListener("click", async() => {
-    const personajes = await getPersonajes();
-    pintarPersonajes(personajes);
+    try {
+        const personajes = await getPersonajes();
+        pintarPersonajes(personajes);
+    } catch (error) {
+        mensajeErrorElemento.textContent = error;
+    }
 });
 const vaciarPersonajes = () => {
     for (const personajeElemento of personajesElemento.querySelectorAll(
@@ -33,3 +38,11 @@ const pintarPersonajes = (personajes) => {
         personajesElemento.append(nuevoPersonaje);
     }
 };
+btnMatarFamilia.addEventListener("click", async() => {
+    try {
+        const arrayPersonajesModificados = await mataPersonajes(inputFamilia.value);
+        pintarPersonajes(arrayPersonajesModificados);
+    } catch (error) {
+        mensajeErrorElemento.textContent = error;
+    }
+});
